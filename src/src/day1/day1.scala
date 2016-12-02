@@ -10,10 +10,16 @@ case class Step(direction: String, distance: Int){
 }
 
 object day1 {
+  private var locations = List(Pair(0, 0))
+
   def main(args: Array[String]): Unit = {
     val steps = Source.fromFile("src/inputs/day1.txt").getLines.toList.head.split(", ").toList.map(new Step(_))
     val finalPosition = takeSteps(Position(Pair(0, 0), Pair(0, 1)), steps)
-    println(abs(finalPosition.coord.x) + abs(finalPosition.coord.y))
+    println(distanceFromHome(finalPosition.coord))
+  }
+
+  def distanceFromHome(coord: Pair): Int = {
+    abs(coord.x) + abs(coord.y)
   }
 
   def takeSteps(position: Position, steps: List[Step]): Position = {
@@ -39,8 +45,20 @@ object day1 {
   }
 
   def move(distance: Int, coord: Pair, heading: Pair): Position = {
+    for (i <- 1 to distance){
+      if (heading.x != 0) checkIfVisited(Pair(coord.x + (i * heading.x), coord.y))
+      if (heading.y != 0) checkIfVisited(Pair(coord.x, coord.y + (i * heading.y)))
+    }
     val newX: Int = coord.x + (heading.x * distance)
     val newY: Int = coord.y + (heading.y * distance)
     Position(Pair(newX, newY), heading)
+  }
+
+  def checkIfVisited(location: Pair): Unit = {
+    if (locations contains location){
+      println("HQ is at " + location + " which is " + distanceFromHome(location) + " away")
+    }else {
+      locations = locations :+ location
+    }
   }
 }
