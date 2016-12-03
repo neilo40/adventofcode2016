@@ -1,3 +1,5 @@
+package day1
+
 import scala.io.Source
 import scala.math.{abs, Pi, cos, sin}
 
@@ -9,11 +11,11 @@ case class Step(direction: String, distance: Int){
   }
 }
 
-object day1 {
+object Day1 {
   private var locations = List(Pair(0, 0))
 
   def main(args: Array[String]): Unit = {
-    val steps = Source.fromFile("src/inputs/day1.txt").getLines.toList.head.split(", ").toList.map(new Step(_))
+    val steps = Source.fromFile("inputs/day1.txt").getLines.toList.head.split(", ").toList.map(new Step(_))
     val finalPosition = takeSteps(Position(Pair(0, 0), Pair(0, 1)), steps)
     println(distanceFromHome(finalPosition.coord))
   }

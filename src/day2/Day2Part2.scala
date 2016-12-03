@@ -1,3 +1,5 @@
+package day2
+
 import scala.collection.immutable.HashMap
 import scala.io.Source
 
@@ -18,15 +20,14 @@ class KeypadDigit(var value: Char) {
   }
 }
 
-object day2Part2 {
+object Day2Part2 {
   def main(args: Array[String]): Unit = {
-    val instructions = Source.fromFile("src/inputs/day2.txt").getLines.toList
-    //val instructions = List("ULL", "RRDDD", "LURDL", "UUUUD")
+    val instructions = Source.fromFile("inputs/day2.txt").getLines.toList
     val digits = setupDigits()
-    var startingDigit = digits('5')
+    var currentDigit = digits('5')
     for (instruction <- instructions) {
-      startingDigit = processMoves(startingDigit, instruction.toList)
-      println(startingDigit.value)
+      currentDigit = processMoves(currentDigit, instruction.toList)
+      println(currentDigit.value)
     }
   }
 

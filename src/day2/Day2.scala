@@ -1,3 +1,5 @@
+package day2
+
 import scala.io.Source
 
 case class GuardedPair(_row: Int, _col: Int) {
@@ -11,9 +13,9 @@ case class GuardedPair(_row: Int, _col: Int) {
   }
 }
 
-object day2 {
+object Day2 {
   def main(args: Array[String]): Unit = {
-    val instructions = Source.fromFile("src/inputs/day2.txt").getLines.toList
+    val instructions = Source.fromFile("inputs/day2.txt").getLines.toList
     var startingPosition = GuardedPair(1, 1)
     for (instruction <- instructions) {
       startingPosition = processMoves(startingPosition, instruction.toList)
