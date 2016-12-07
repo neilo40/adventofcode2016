@@ -9,9 +9,9 @@ object Day7 {
   }
 
   def supportsTls(s: String): Boolean = {
-    val hyperNetHasAbba = getHypernet(s).map(hasAbba).reduce(_ || _)
+    val hypernetHasAbba = getHypernet(s).map(hasAbba).reduce(_ || _)
     val supernetHasAbba = getSupernet(s).map(hasAbba).reduce(_ || _)
-    supernetHasAbba && !hyperNetHasAbba
+    supernetHasAbba && !hypernetHasAbba
   }
 
   def getHypernet(s: String): List[String] = {

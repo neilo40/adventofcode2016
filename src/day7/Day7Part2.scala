@@ -10,10 +10,10 @@ object Day7Part2 {
 
   def supportsSsl(s: String): Boolean = {
     val supernetAba = getSupernet(s).map(getAba).foldLeft(List[String]())((a, b) => a ::: b)
-    val hyperNetBab = getHypernet(s).map(getAba).foldLeft(List[String]())((a, b) => a ::: b)
+    val hypernetBab = getHypernet(s).map(getAba).foldLeft(List[String]())((a, b) => a ::: b)
     for (aba <- supernetAba){
       val bab = aba(1).toString + aba(0).toString + aba(1).toString
-      if (hyperNetBab contains bab) return true
+      if (hypernetBab contains bab) return true
     }
     false
   }
