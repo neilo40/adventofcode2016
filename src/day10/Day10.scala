@@ -37,8 +37,7 @@ object Day10 {
     val definitions: List[String] = Source.fromFile("inputs/day10.txt").getLines.toList
     definitions.filter(d => d.startsWith("value")).foreach(assignValueToBot(_, bots))
     definitions.filter(d => d.startsWith("bot")).foreach(connectBots(_, bots, outputs))
-    var done = false
-    while (!done) done = !bots.exists(_.tick())
+    while (bots.exists(_.tick())){}
     println(outputs.head.chips.head * outputs(1).chips.head * outputs(2).chips.head)
   }
 
