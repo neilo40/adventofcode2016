@@ -1,7 +1,7 @@
 package day16
 
 object Day16{
-  val dataSize = 272
+  val dataSize = 35651584
 
   def main(args: Array[String]): Unit = {
     val input = "01111001100111011"
@@ -11,7 +11,7 @@ object Day16{
 
   def genData(a: String): String = {
     a.length match {
-      case x if (x >=  dataSize) => a
+      case x if x >=  dataSize => a
       case _ => genData(genNewA(a))
     }
   }
@@ -28,7 +28,7 @@ object Day16{
   def genChecksum(data: String): String = {
     val sum = genCandidateChecksum(data)
     sum.length % 2 match {
-      case 0 => genChecksum(genCandidateChecksum(sum))
+      case 0 => genChecksum(sum)
       case _ => sum
     }
   }
@@ -39,7 +39,7 @@ object Day16{
 
   def condensePair(p: String): Char = {
     p match {
-      case x if (x.head == x.last) => '1'
+      case x if x.head == x.last => '1'
       case _ => '0'
     }
   }
