@@ -8,10 +8,7 @@ class Disc(_spec: String){
   val positions = spec(3).toInt
   val startingPos = spec.last.stripSuffix(".").toInt
 
-  def willDrop(time: Int): Boolean = {
-    val position = (startingPos + time) % positions
-    position == 0
-  }
+  def willDrop(time: Int): Boolean = (startingPos + time) % positions == 0
 }
 
 object Day15 {
